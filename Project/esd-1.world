@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <!-- The base -->
+    <model name="base">
+      <static>true</static>
+      <link name="base_link">
+        <pose>0 0 0.25 0 0 0</pose>
+        <collision name="base_collision">
+          <geometry>
+            <mesh>
+              <uri>file://base_pits.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="base_visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>file://base_pits.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <!-- The end -->
+   <model name="baseend">
+      <static>true</static>
+      <link name="baseend_link">
+        <pose>0 2.25 0.25 0 0 0</pose>
+        <collision name="baseend_collision">
+          <geometry>
+            <mesh>
+              <uri>file://baseend.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="baseend_visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>file://baseend.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <!-- Wall 1 -->
+   <model name="sidewall_1">
+      <static>true</static>
+      <link name="sidewall_1_link">
+        <pose>-1.45 0 0.6 0 0 0</pose>
+        <collision name="sidewall_1_collision">
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="sidewall_1_visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <!-- Wall 2 -->
+   <model name="sidewall_2">
+      <static>true</static>
+      <link name="sidewall_2_link">
+        <pose>1.45 0 0.6 0 0 0</pose>
+        <collision name="sidewall_2_collision">
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="sidewall_2_visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <!-- Wall 3 -->
+   <model name="sidewall_3">
+      <static>true</static>
+      <link name="sidewall_3_link">
+        <pose>0.9 2.3 0.6 0 0 0.785</pose>
+        <collision name="sidewall_3_collision">
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 0.40 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="sidewall_3_visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 0.40 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <!-- Wall 4 -->
+   <model name="sidewall_4">
+      <static>true</static>
+      <link name="sidewall_4_link">
+        <pose>-0.9 2.3 0.6 0 0 -0.785</pose>
+        <collision name="sidewall_4_collision">
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 0.40 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="sidewall_4_visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <mesh>
+              <uri>file://sidewall.dae</uri>
+              <scale>1 0.40 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- turn off shadows to reduce computational cost -->
+    <scene>
+     <shadows> 0 </shadows>
+    </scene>
+
+    <!-- Custom physics settings to speed up simulation -->
+    <physics type='ode'>
+      <max_step_size> 0.01 </max_step_size>
+      <real_time_factor> 1 </real_time_factor>
+      <real_time_update_rate> 100 </real_time_update_rate>
+      <gravity> 0 0 -9.8 </gravity>
+    </physics>
+  </world>
+</sdf>

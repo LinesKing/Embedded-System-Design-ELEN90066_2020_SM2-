@@ -1,0 +1,36 @@
+<launch>
+    <!-- We inherit the logic in empty_world.launch, changing only the name of
+        the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find ws04_gazebo)/worlds/ws04.world"/>
+        <!-- more default parameters can be changed here -->
+    </include>
+
+
+    <arg name="robot_name" value="mobile_base"/>
+
+
+    <!-- First, convert the kobuki xacro description and put on parameter server
+        -->
+    <param name="robot_description"
+    command="$(find xacro)/xacro.py '$(find kobuki_description)/urdf/kobuki_standalone.urdf.xacro'"/>
+
+
+    <!-- Now, spawn the robot into Gazebo -->
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_$(arg robot_name)" 
+        args="-x 0.0 -y 0.0 -z 0.0 -unpause -urdf -param robot_description -model $(arg robot_name)" 
+        respawn="false">
+    </node>
+
+
+    <!-- Calculate the forward kinematics of the robot and publish the results
+        via tf -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="30.0" />
+    </node>
+
+
+    <node pkg="nodelet" type="nodelet" name="$(arg robot_name)_nodelet_manager" args="manager"/>
+
+        
+</launch>
